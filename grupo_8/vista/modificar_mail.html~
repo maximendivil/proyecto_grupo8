@@ -1,0 +1,36 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+
+<form method="POST" action="../controlador/modificarEmail.php">
+			<div id="errorLogin">
+							</div>			
+			<fieldset id="form1">
+				<legend>Modificar email:</legend>
+				<div class="labels">
+					<label for="emailAct" id="item_label">Email actual : </label>
+					<br>
+					<label for="email1" id="item_label">Email nuevo(*) : </label>
+					<br>
+					<label for="email2" id="item_label">Repita su email(*) : </label>
+					<br>
+				</div>
+				<div class="inputs">
+					<input type="email" name="emailAct" id="emailAct" disabled="" value="<?php $mail = $_SESSION["email"]; echo $mail; ?>">
+					<br>
+					<input type="email" name="email1" id="email1" required>
+					<br>						
+					<input type="email" name="email2" id="email2" required>
+					<br>
+				</div>
+			</fieldset>
+			<br>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+			<br>
+			<em id="apartado">Los campos marcados con * son considerados obligatorios</em>
+			<br>	
+		</form>
+	</div>
+</body>
+</html>

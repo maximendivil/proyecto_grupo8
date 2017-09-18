@@ -1,0 +1,41 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+
+<form method="POST" action="../controlador/modificarPass.php">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>			
+			<fieldset id="form1">
+				<legend>Modificar contrase&ntilde;a:</legend>
+				<div class="labels">
+					<label for="emailAct" id="item_label">Contrase&ntilde;a actual(*) : </label>
+					<br>
+					<label for="email1" id="item_label">Contrase&ntilde;a nueva(*) : </label>
+					<br>
+					<label for="email2" id="item_label">Repita su nueva contrase&ntilde;a(*) : </label>
+					<br>
+				</div>
+				<div class="inputs">
+					<input type="password" name="passAct" id="passAct" required>
+					<br>
+					<input type="password" name="pass1" id="pass1" required>
+					<br>						
+					<input type="password" name="pass2" id="pass2" required>
+					<br>
+				</div>
+			</fieldset>
+			<br>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+			<br>
+			<em id="apartado">Los campos marcados con * son considerados obligatorios</em>
+			<br>	
+		</form>
+	</div>
+</body>
+</html>

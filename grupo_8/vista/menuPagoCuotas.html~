@@ -1,0 +1,19 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+		<div id="submenu">		
+				
+				<div id="itemMenu">
+					<div id="tituloMenu"><p>Cuotas</p></div>
+					<ul>
+						<li><a href="../controlador/backend.php?controller=formulario_AgregarCuota">Agregar una cuota mensual o de matrícula</a></li>
+						<li><a href="../controlador/backend.php?controller=listado_editarCuotas">Modificar una cuota mensual o de matrícula</a></li>
+						<li><a href="../controlador/backend.php?controller=verPagos">Eliminar una cuota mensual o de matrícula</a></li>						
+						<li><a href="../controlador/backend.php?controller=verPagos">Registrar pago cuota/matricula</a></li>
+						<li><a href="../controlador/backend.php?controller=verPagosAlumnos">Listado de cuotas pagas</a></li>
+					</ul>
+				</div>
+				
+		</div>
+	</div>	
+</body>

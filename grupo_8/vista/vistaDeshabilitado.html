@@ -1,0 +1,26 @@
+<?php
+	require("../vista/header.php");
+?>
+<body id="fondo">
+	<div id="contenido">
+		<div id="encabezado">
+			<div id="titulo"> 
+				<h1>Cooperativa de la Escuela Joaquín V. González</h1>
+				<h5>Escuela de la Universidad Nacional de La Plata</h5>
+			</div>
+			<div id="loginIndex">
+				<p><a href="../controlador/login.php">Login</a></p>
+			</div>
+			<div id="fotoPortada">
+				<img id="img" src="../fotoEscuela.jpg" alt="Frente de la escuela Anexa">
+			</div>
+		</div>
+		<div id="mensajeExito">
+			<?php 
+				echo "<center><h3>$msj</h3></center>";
+			?>
+		</div>
+
+	</div>
+</body>
+</html>

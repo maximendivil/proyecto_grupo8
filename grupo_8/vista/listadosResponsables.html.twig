@@ -1,0 +1,110 @@
+{% extends 'headerBackend.twig.html' %}
+
+{% block title %}Menu usuario{% endblock %}
+
+{% block contenido %}
+	<div class="titulos">
+	<h2>Usuarios</h2>
+</div>
+<div class="operacionesResponsables">
+	<p>Operaciones responsables:</p>
+	<ul>
+		<li>Agregar un responsable a un usuario: <i class='material-icons' title='Agregar responsable'>person_add</i></li>
+		<li>Modificar los datos del responsable: <i class='material-icons' title='Cambiar responsable'>edit</i></li>
+		<li>Eliminar el responsable: <i class='material-icons' title='Eliminar responsable'>remove_circle</i></li>
+	</ul>
+</div>
+<div class="operacionesDisponibles">
+	<p>Operaciones usuarios:</p>
+	<ul>
+		<li>Eliminar usuarios: <i class='material-icons' title='Eliminar usuario'>delete</i></li>
+		<li>Habilitar usuarios: <i class='material-icons' title='Dar de alta'>done</i></li>
+		<li>Cambiar roles: <i class='material-icons' title='Cambiar rol'>supervisor_account</i></li>
+	</ul>
+</div>
+
+<div id="addUser">
+	<a href="../controlador/backend.php?controller=agregarUsuario"><button>Crear nuevo</button></a>
+</div>
+<div id="listado">				
+	
+	{% if msj is defined %}
+	<div id='mensajeError'>{{msj}}</div>
+	{% endif %}
+	{% if usuarios is defined %}
+		<table>
+			<tr>
+				<th>Username</th>
+				<th>Email</th>
+				<th>Rol</th>
+				<th>Habilitado</th>
+				<th>Operaciones</th>
+				<th>Operaciones responsables</th>
+			</tr>
+			{% for user in usuarios %}
+				{% if user.username != usuario %}
+				<tr>
+					<td>{{user.username}}</td>
+					<td>{{user.email}}</td>
+					<td>{{user.rol}}</td>
+					{% if user.habilitado == 1 %}
+						<td>SI</td>
+						<td><a href='backend.php?controller=eliminarUsuarioDB&user={{user.username}}&valor=0'><i class='material-icons' title='Eliminar usuario'>delete</i></a>
+					{% endif %}
+					{% if user.habilitado == 0 %}
+						<td>NO</td>
+						<td><a href='backend.php?controller=eliminarUsuarioDB&user={{user.username}}&valor=1'><i class='material-icons' title='Dar de alta'>done</i></a>
+					{% endif %}
+					<a href='../controlador/backend.php?controller=formRol&user={{user.username}}'><i class='material-icons' title='Cambiar rol'>supervisor_account</i></a></td> 
+					{% if user.responsable == null %}
+						<td><a href='../controlador/backend.php?controller=vistaAgregarResponsable&user={{user.username}}&pagina=1'><i class='material-icons' title='Agregar responsable'>person_add</i></a></td>
+					{% endif %}
+					{% if user.responsable != null %}
+						<td><a href='../controlador/backend.php?controller=cambiarResponsable&user={{user.username}}'><i class='material-icons' title='Cambiar responsable'>edit</i></a>
+						<a href='../controlador/backend.php?controller=eliminarResponsable&user={{user.username}}'><i class='material-icons' title='Eliminar responsable'>remove_circle</i></a></td>
+
+					{% endif %}
+				</tr>								
+				{% endif %}
+				{% if user.username == usuario %}
+					<tr>
+						<td>{{user.username}}</td>
+						<td>{{user.email}}</td>
+						<td>{{user.rol}}</td>
+						{% if user.habilitado == 1 %}
+							<td>SI</td>
+						{% endif %}
+						{% if user.habilitado == 0 %}
+							<td>NO</td>
+						{% endif %}
+						<td></td>
+						{% if user.responsable == null %}
+							<td><a href='../controlador/backend.php?controller=vistaAgregarResponsable&user={{user.username}}&pagina=1'><i class='material-icons' title='Agregar responsable'>person_add</i></a></td>
+						{% endif %}
+						{% if user.responsable != null %}
+							<td><a href='../controlador/backend.php?controller=cambiarResponsable&user={{user.username}}'><i class='material-icons' title='Cambiar responsable'>edit</i></a>
+							 <a href='../controlador/backend.php?controller=eliminarResponsable&user={{user.username}}'><i class='material-icons' title='Eliminar responsable'>remove_circle</i></a></td>
+						{% endif %}		
+					</tr>			
+				{% endif %}
+			{% endfor %}
+			</table>
+		{% endif %}
+			<div class='paginador'>
+				{% if total_paginas > 1 %}
+				   	{% if pagina != 1 %}
+						<a href='../controlador/backend.php?controller=cambiarRoles&pagina={{pagina - 1}}'><button class='anterior'>Anterior</button></a>
+					{% endif %}
+					{% if pagina == 1 %}
+						<button id='disabledAnterior' disabled>Anterior</button>
+					{% endif %}
+					{% if pagina != total_paginas %}
+						<a href='../controlador/backend.php?controller=cambiarRoles&pagina={{pagina + 1}}'><button class='siguiente'>Siguiente</button></a>
+					{% endif %}
+					{% if pagina == total_paginas %}
+						<button id='disabledSiguiente' disabled>Siguiente</button>
+					{% endif %}    
+				{% endif %}
+			</div>
+	</div>
+{% endblock %}

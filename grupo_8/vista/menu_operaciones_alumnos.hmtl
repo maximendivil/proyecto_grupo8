@@ -1,0 +1,23 @@
+echo "<li><a href='menu_operaciones_alumnos.php'>Alumnos</a></li>";<?php
+	require("../controlador/headerBackend.php");
+?>
+		<div id="submenu">			
+				
+				<div id="itemMenu">
+					<div id="tituloMenu"><p>Alumnos</p></div>
+					<ul>
+						<li><a href="../controlador/registrarse.php">Agregar un alumno</a></li>
+						<li><a href="../controlador/cambiar_roles.php">Eliminar/Modificar un alumno</a></li>
+					</ul>
+				</div>
+				<div id="itemMenu">
+					<div id="tituloMenu"><p>Responsables</p></div>
+					<ul>
+						<li><a href="../controlador/agregar_responsable.php">Agregar un responsable</a></li>
+						<li><a href="../controlador/cambiar_responsable.php">Cambiar responsable</a></li>
+						<li><a href="../controlador/eliminar_responsable.php">Eliminar un responsable</a></li>
+					</ul>
+				</div>
+		</div>
+	</div>	
+</body>

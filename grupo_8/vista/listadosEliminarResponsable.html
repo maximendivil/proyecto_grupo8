@@ -1,0 +1,36 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+
+<div id="listado">			
+				<?php					
+					if(isset($msjE)){
+						echo "</table>";
+						echo "<div id='mensajeError'>".$msjE."</div>";
+					}
+					else {
+						echo "<table><caption>Listado de usuarios de la escuela</caption>";
+						echo "<tr><th>Username</th><th>Email</th><th>Apellido Responsable</th><th>Nombre Responsable</th><th>Operaciones</th></tr>";
+
+						for ($i=0; $i < count($rows); $i++) {
+							if ($rows[$i]["username"] != $_SESSION["usuario"]){
+								echo "<tr>";
+								echo "<td>".$rows[$i]["username"]."</td>";
+								echo "<td>".$rows[$i]['email']."</td>";
+								echo "<td>".$rows[$i]['apellido']."</td>";
+								echo "<td>".$rows[$i]['nombre']."</td>";								
+								echo "<td><a href='../controlador/backend.php?controller=eliminarResponsable&user=".$rows[$i]["username"]."'><i class='material-icons' title='Eliminar responsable'>cancel</i></a></td>";
+								echo "</tr>";
+							}
+						}
+
+						echo "</table>";
+					}
+					
+				?>		
+			</table>
+		</div>
+			
+	</div>
+
+</html>

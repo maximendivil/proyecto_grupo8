@@ -1,0 +1,72 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+
+		<div id="listado">
+
+			<!--<div id="filter">
+				<form action="../controlador/pago_cuotas.php" method="POST">
+					<label for="buscador" id="labelBuscador">DNI:</label>
+					<input type="text" id="buscador" name="buscador">
+					<input type="submit" id="submitBuscador">
+				</form>
+			</div>-->
+			<?php
+				//Muestro las cuotas pagas
+				if(isset($msjE)){
+					echo "<div id='errorListado'><p>$msjE</p></div>";
+				}
+				else {
+					echo "<table>";
+					echo "<caption>Listado de cuotas pagas</caption>";
+					echo"<tr><th>A&ntilde;o</th><th>Mes</th><th>N&uacute;mero de cuota</th><th>Valor</th><th>Tipo</th><th>Fecha</th><th></tr>";
+					
+							for ($i=0; $i < count($rowsPagas); $i++) {
+								echo "<tr>";									
+								echo "<td>".$rowsPagas[$i]['anio']."</td>";
+								echo "<td>".$rowsPagas[$i]["mes"]."</td>";
+								echo "<td>".$rowsPagas[$i]['numero']."</td>";
+								echo "<td>$".$rowsPagas[$i]['monto']."</td>";
+								//Me fijo si fue becada o no la cuota
+								if ($rowsPagas[$i]['becado'] == 0){
+									echo "<td>".$rowsPagas[$i]['tipo']."</td>";
+								}
+								else {
+									echo "<td>Becada</td>";
+								}
+								echo "<td>".$rowsPagas[$i]['fecha']."</td>";								
+								echo "</tr>";
+								
+							}						
+					
+					echo "</table>";
+
+
+
+				echo "<div class='paginador'>";
+					if ($total_paginas > 1) { //Si solo hay una pagina, no muestro los botones "siguiente" y "anterior"
+					   	if ($pagina != 1){ //Si no es la primera, tengo que mostrar el boton "anterior" y llamar al controlador con el numero de pagina
+					   		$pag = $pagina-1;
+					    	echo "<a href='../controlador/backend.php?controller=verCuotas&pagina=".$pag."&id=$id'><button class='anterior'>Anterior</button></a>";
+					    }
+					    else {
+					    	echo "<button id='disabledAnterior' disabled>Anterior</button>"; //Boton deshabilitado
+					    }
+					    if ($pagina != $total_paginas){ //Si no es la ultima, tengo que mostrar el boton "siguiente" y llamar al controlador con el numero de pagina
+					    	$pag = $pagina+1;
+					    	echo "<a href='../controlador/backend.php?controller=verCuotas&pagina=".$pag."&id=$id'><button class='siguiente'>Siguiente</button></a>";
+					    }
+					    else {
+					    	echo "<button id='disabledSiguiente' disabled>Siguiente</button>"; //Boton deshabilitado
+					    }    
+					}
+					echo "</div>";
+				}
+
+				
+			?>
+		</div>
+			
+	</div>
+
+</html>

@@ -1,0 +1,71 @@
+{% extends 'headerBackend.twig.html' %}
+
+{% block title %}Menu Alumnos{% endblock %}
+
+{% block contenido %}
+	<div class="titulos">
+	<h2>Alumnos</h2>
+</div>
+<div class="operacionesResponsables">
+	<p>Operaciones responsables:</p>
+	<ul>
+		<li>Ligar un responsable al alumno: <i class='material-icons' title='Asignar un responsable al alumno:'>person_add</i></li>
+		<li>Desligar un responsable del alumno: <i class='material-icons' title='Quitar un responsable al alumno'>remove_circle</i></li>
+	</ul>
+</div>
+<div class="operacionesDisponibles">
+	<p>Operaciones de alumnos: </p>
+	<ul>
+                <li>Editar aluno: <i class='material-icons' title='Editar alumno'>edit</i></li>
+		<li>Eliminar alumno: <i class='material-icons' title='Eliminar alumno'>delete</i></li>
+	</ul>
+</div>
+
+<div id="addUser">
+	<a href="../controlador/backend.php?controller=formulario_agregarAlumno"><button>Agregar un alumno</button></a>
+</div>
+<div id="listado">				
+	
+	{% if msj is defined %}
+	<div id='mensajeError'>{{msj}}</div>
+	{% endif %}
+		<table>
+			<tr>
+				<th>DNI</th><th>Nombre</th><th>Apellido</th><th>Fecha de nacimiento</th><th>Valido</th><th>Operaciones de alumnos</th><th>Operaciones de responsables</th>
+			</tr>
+			{% for alumno in alumnos %}
+				<tr>
+					<td>{{alumno.numeroDocumento}}</td>
+                                        <td>{{alumno.nombre}}</td>
+					<td>{{alumno.apellido}}</td>
+					<td>{{alumno.fechaNacimiento}}</td>
+					{% if alumno.valido %}
+                                            <td>SI</td>
+                                            <td><a href='../controlador/backend.php?controller=deshabilitarAlumno&amp;id={{alumno.id}}&amp;valor=0&amp;pagina={{pagina}}'><i class='material-icons' title='Deshabilitar alumno.'>delete</i></a>
+                                        {% else %}
+                                            <td>NO</td>
+                                            <td><a href='../controlador/backend.php?controller=habilitarAlumno&amp;id={{alumno.id}}&amp;valor=1&amp;pagina={{pagina}}'><i class='material-icons' title='Habilitar alumno.'>done</i></a>
+					{% endif %}			
+					<a href='../controlador/backend.php?controller=formulario_editarAlumno&amp;id={{alumno.id}}'><i class='material-icons' title='Editar alumno.'>edit</i></a>
+					<td><a href='../controlador/backend.php?controller=agregarResponsableAlumno&amp;idAlumno={{alumno.id}}'><i class='material-icons' title='Asignar un responsable a este alumno.'>person_add</i></a><a href='../controlador/backend.php?controller=eliminarResponsableAlumno&idAlumno={{alumno.id}}'><i class='material-icons' title='Quitar un responsable a este alumno.'>remove_circle</i></a></td>
+				</tr>								
+			{% endfor %}
+			</table>
+			<div class='paginador'>
+				{% if total_paginas > 1 %}
+				   	{% if pagina != 1 %}
+						<a href='../controlador/backend.php?controller=listadosAlumnos&pagina={{pagina - 1}}'><button class='anterior'>Anterior</button></a>
+					{% endif %}
+					{% if pagina == 1 %}
+						<button id='disabledAnterior' disabled>Anterior</button>
+					{% endif %}
+					{% if pagina != total_paginas %}
+						<a href='../controlador/backend.php?controller=listadosAlumnos&pagina={{pagina + 1}}'><button class='siguiente'>Siguiente</button></a>
+					{% endif %}
+					{% if pagina == total_paginas %}
+						<button id='disabledSiguiente' disabled>Siguiente</button>
+					{% endif %}    
+				{% endif %}
+			</div>
+	</div>
+{% endblock %}

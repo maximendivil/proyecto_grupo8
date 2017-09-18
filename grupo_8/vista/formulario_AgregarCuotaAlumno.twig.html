@@ -1,0 +1,68 @@
+{% extends 'headerBackend.twig.html' %}
+
+{% block title %}Agregar cuota{% endblock %}
+
+{% block contenido %}
+<div class="titulos">
+	<h2>Agregar una nueva cuota al sistema</h2>
+</div>
+		<form method="POST" action="../controlador/backend.php?controller=agregarCuotaDB">			
+			<fieldset id="form1">
+				<legend>Agregar cuota:</legend>
+				<div class="labels">
+					<label for="tipoCuota">Tipo de cuota(*) : </label>
+					<br>
+					<label for="monto">Monto(*) : </label>
+					<br>					
+					<label for="comisionCobrador">Porcentaje de comisión al cobrador(*) : </label>
+					<br>
+                                        <label for="anioCuota">Año de la cuota(*) : </label>
+					<br>
+					<span class="invisible"><label for="mesCuota">Mes de la cuota(*) : </label>  
+					<br>
+                                        <label for="cantCuotas">Cantidad de cuotas(*) : </label>
+                                        <br>
+                                        </span>
+				</div>
+				<div class="inputs">			
+
+					<select id="tipoCuota" name="tipoCuota" required>
+						<option value='' selected='selected' >Elige uno</option>
+						<option value="mensual">Mensual</option>
+						<option value="matricula">Matrícula</option>
+					</select>
+					<br>
+					<input type="number" name="monto" id="monto" min="0" required>
+					<br>					
+					<input type="number" name="comisionCobrador" id="comisionCobrador" min="0" max="100" required>
+					<br>
+                                        <input type="number" name="anioCuota" id="anioCuota" min="1900" value="2015" required>
+					<br>
+                                        <span class="invisible">
+					<select id="mes" name="mes" required>
+						<option value="1" selected='selected'>Enero</option>
+						<option value="2">Febrero</option>
+						<option value="3">Marzo</option>
+						<option value="4">Abril</option>
+						<option value="5">Mayo</option>
+						<option value="6">Junio</option>
+						<option value="7">Julio</option>
+						<option value="8">Agosto</option>
+						<option value="9">Septiembre</option>
+						<option value="10">Octubre</option>
+						<option value="11">Noviembre</option>
+						<option value="12">Diciembre</option>
+					</select>
+                                        <input type="number" name="cantCuotas" id="cantCuotas" min="1" value="1" required>
+                                        </span>
+				</div>
+			</fieldset>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+			<br>
+			<em id="apartado">Los campos marcados con * son considerados obligatorios</em>
+			<br>
+		</form>
+<script src="../scripts/jquery-1.11.3.min.js"></script>
+<script src="../scripts/funcionesCuota.js"></script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'headerBackend.twig.html' %}
+
+{% block title %}Menu Responsables{% endblock %}
+
+{% block contenido %}
+
+<div class="titulos">
+	<h2>Responsables</h2>
+</div>
+<div class="operacionesDisponibles">
+	<p>Operaciones disponibles:</p>
+	<ul>
+		<li>Modificar los datos del responsable: <i class='material-icons' title='Cambiar responsable'>edit</i></li>
+		<li>Eliminar el responsable: <i class='material-icons' title='Eliminar responsable'>delete</i></li>
+	</ul>
+</div>
+
+<div id="addUser">
+	<a href="../controlador/backend.php?controller=formulario_agregarResponsable"><button>Agregar un responsable</button></a>
+</div>
+<div id="listado">				
+	
+	{% if msj is defined %}
+	<div id='mensajeError'>{{msj}}</div>
+	{% endif %}
+		<table>
+			<tr>
+				<th>Nombre</th><th>Apellido</th><th>Mail</th><th>Operaciones</th>
+			</tr>
+			{% for responsable in responsables %}
+				<tr>
+					<td>{{responsable.nombre}}</td>
+                                        <td>{{responsable.apellido}}</td>
+                                        <td>{{responsable.mail}}</td>	
+					<td><a href='../controlador/backend.php?controller=formulario_editarResponsable&amp;idResponsable={{responsable.id}}'><i class='material-icons' title='Editar responsable.'>edit</i></a><a href='../controlador/backend.php?controller=controlador_eliminarResponsableGeneral&amp;idResponsable={{responsable.id}}'><i class='material-icons' title='Eliminar Responsable'>delete</i></a></td>
+				</tr>								
+			{% endfor %}
+			</table>
+			<div class='paginador'>
+				{% if total_paginas > 1 %}
+				   	{% if pagina != 1 %}
+						<a href='../controlador/backend.php?controller=listadoResponsables&pagina={{pagina - 1}}'><button class='anterior'>Anterior</button></a>
+					{% endif %}
+					{% if pagina == 1 %}
+						<button id='disabledAnterior' disabled>Anterior</button>
+					{% endif %}
+					{% if pagina != total_paginas %}
+						<a href='../controlador/backend.php?controller=listadoResponsables&pagina={{pagina + 1}}'><button class='siguiente'>Siguiente</button></a>
+					{% endif %}
+					{% if pagina == total_paginas %}
+						<button id='disabledSiguiente' disabled>Siguiente</button>
+					{% endif %}    
+				{% endif %}
+			</div>
+	</div>
+{% endblock %}

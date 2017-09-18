@@ -1,0 +1,19 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+		<div id="submenu">
+			
+				
+				<div id="itemMenu">
+					<div id="tituloMenu"><p>Listados</p></div>
+					<ul>
+						<li><a href="">Alumnos con matr&iacute;cula paga</a></li>
+						<li><a href="">Cuotas impagas, por mes y a&ntilde;o</a></li>
+						<li><a href="">Cuotas pagas, por mes y a&ntilde;o</a></li>
+						<li><a href="">Alumnos</a></li>
+					</ul>
+				</div>
+				
+		</div>
+	</div>	
+</body>

@@ -1,0 +1,52 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+		<form method="POST" action="../controlador/agregarResponsable.php?usuario=<?php echo $user?>">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>			
+			<fieldset id="form1">
+				<legend>Agregar cuota:</legend>
+				<div class="labels">
+					<label for="añoCuota">Año de la cuota(*) : </label>
+					<br>
+					<label for="mesCuota">Mes de la cuota(*) : </label>
+					<br>
+					<label for="numeroCuota">Numero de cuota(*): </label>
+					<br>
+					<label for="tipoCuota">Tipo de cuota(*) : </label>
+					<br>
+					<label for="porcentaje">Porcentaje de comisión al cobrador(*) : </label>
+					<br>
+				</div>
+				<div class="inputs">			
+					<input type="number" name="añoCuota" id="añoCuota" min="0" required>
+					<br>
+					<select id="mes" name="tipoParentezco" required>
+						<option value='' selected='selected' >Elige uno</option>
+						<option value="1">Enero</option>
+						<option value="2">Febrero</option>
+						<option value="3">Marzo</option>
+						<option value="4">Abril</option>
+						<option value="5">Mayo</option>
+						<option value="6">Junio</option>
+						<option value="7">Julio</option>
+						<option value="8">Agosto</option>
+						<option value="9">Septiembre</option>
+						<option value="10">Octubre</option>
+						<option value="11">Noviembre</option>
+						<option value="12">Diciembre</option>
+					</select>
+					<br>
+					<select id="tipoCuota" name="tipoParentezco" required>
+						<option value='' selected='selected' >Elige uno</option>
+						<option value="mensual">Mensual</option>
+						<option value="matricula">Matrícula</option>
+					</select>
+					<br>
+				</div>
+			</fieldset>

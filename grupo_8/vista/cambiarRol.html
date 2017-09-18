@@ -1,0 +1,43 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+<div class="titulos">
+	<h2>Cambiar rol a un usuario</h2>
+</div>
+		<form method="POST" action="../controlador/backend.php?controller=cambiarRol&user=<?php echo $user; ?>">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjE)){
+						echo "<h3>$msjE</h3>";
+					}
+				?>
+			</div>
+			<fieldset id="form1">
+				<legend>Cambiar rol:</legend>
+				<div class="labels">
+					<label for="user" id="item_label">Usuario(*) : </label>
+					<br>
+					<label for="rol" id="item_label">Rol(*) : </label>
+					<br>
+				</div>
+				<div class="inputs">
+					<input type="text" name="user" id="user" disabled value="<?php echo $user;?>">
+					<br>					
+					<select id="rol" name="rol">
+						<option value="0">Gestion</option>
+						<option value="1">Administracion</option>
+						<option value="2">Consulta</option>
+					</select>
+					<br>
+				</div>
+			</fieldset>
+			<br>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+			<br>
+			<em id="apartado">Los campos marcados con * son considerados obligatorios</em>
+			<br>	
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+
+<div id="mensajeExito">
+			<?php 
+				echo $msjExito;
+				header("refresh:3; url =  ../controlador/mi_cuenta.php");
+			?>
+		</div>
+
+	</div>
+</body>
+</html>

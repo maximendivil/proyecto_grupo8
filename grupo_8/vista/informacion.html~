@@ -1,0 +1,40 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+		<form method="POST" action="../controlador/establecerInformacion.php">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>
+			<fieldset id="form1">
+				<legend>Informaci&oacute;n del sitio</legend>
+				<div class="labels">
+					<label for="tit" id="item_label">T&iacute;tulo: </label>
+					<br>
+					<br>
+					<label for="mail" id="item_label">Email: </label>
+					<br>
+					<label for="tel" id="item_label">Tel&eacute;fono: </label>
+					<br>
+				</div>
+				<div class="inputs">
+					<?php
+						echo "<textarea id='tit' name='tit' rows='2' cols='30' required>$titulo</textarea>";
+						echo "<br>";
+						echo "<input type='mail' id='mail' name='mail' value='$email' required>";
+						echo "<br>";
+						echo "<input type='text' id='tel' name='tel' value='$telefono' required>";
+						echo "<br>";
+					?>
+				</div>
+			</fieldset>
+			<br>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+		</form>
+	</div>
+</body>
+</html>

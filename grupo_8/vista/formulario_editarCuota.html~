@@ -1,0 +1,244 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+		<form method="POST" action="../controlador/backend.php?controller=editarCuotaBD&amp;idCuota=<?php echo $cuota[0]['id']; ?>">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>			
+			<fieldset id="form1">
+				<legend>Agregar cuota:</legend>
+				<div class="labels">
+					<label for="anioCuota">Año de la cuota(*) : </label>
+					<br>
+					<label for="mesCuota">Mes de la cuota(*) : </label>
+					<br>
+					<label for="numeroCuota">Numero de cuota(*): </label>
+					<br>
+					<label for="tipoCuota">Tipo de cuota(*) : </label>
+					<br>
+					<label for="monto">Monto(*) : </label>
+					<br>					
+					<label for="comisionCobrador">Porcentaje de comisión al cobrador(*) : </label>
+					<br>
+				</div>
+				<div class="inputs">			
+					<input type="number" name="anioCuota" id="anioCuota" min="1900" value="<?php echo $cuota[0]['anio']; ?>" required>
+					<br>
+					<select id="mes" name="mes" required>
+					<?php
+							switch ($cuota[0]['mes']) {
+								case '1':
+									echo "<option value='1' selected>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '2':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2' selected>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '3':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3' selected>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '4':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4' selected>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '5':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5' selected>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '6':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6' selected>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '7':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7' selected>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '8':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8' selected>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '9':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9' selected>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '10':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10' selected>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '11':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11' selected>Noviembre</option>";
+									echo "<option value='12'>Diciembre</option>";
+									break;
+								case '12':
+									echo "<option value='1'>Enero</option>";
+									echo "<option value='2'>Febrero</option>";
+									echo "<option value='3'>Marzo</option>";
+									echo "<option value='4'>Abril</option>";
+									echo "<option value='5'>Mayo</option>";
+									echo "<option value='6'>Junio</option>";
+									echo "<option value='7'>Julio</option>";
+									echo "<option value='8'>Agosto</option>";
+									echo "<option value='9'>Septiembre</option>";
+									echo "<option value='10'>Octubre</option>";
+									echo "<option value='11'>Noviembre</option>";
+									echo "<option value='12' selected>Diciembre</option>";
+									break;
+								default:
+									# code...
+									break;
+							}
+					?>
+					</select>
+					<br>
+					<input type="number" name="numeroCuota" id="numeroCuota" value="<?php echo $cuota[0]['numero']; ?>" min="0" required>
+					<br>
+					<select id="tipoCuota" name="tipoCuota" required>
+					<?php
+							switch ($cuota[0]["mes"]) {
+								case 'mensual':
+									echo "<option value="mensual" selected>Mensual</option>";
+									echo "<option value="matricula">Matrícula</option>";
+									break;
+								case 'matricula':
+									echo "<option value="mensual">Mensual</option>";
+									echo "<option value="matricula" selected>Matrícula</option>";
+								default:
+									# code...
+									break;
+							}
+						?>
+						<option value="mensual">Mensual</option>
+						<option value="matricula">Matrícula</option>
+					</select>
+					<br>
+					<input type="number" name="monto" id="monto" value="<?php echo $cuota[0]['monto']; ?>" min="0" required>
+					<br>					
+					<input type="number" name="comisionCobrador" id="comisionCobrador" value="<?php echo $cuota[0]['comisionCobrador']; ?>" min="0" max="100" required>
+					<br>
+				</div>
+			</fieldset>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+			<br>
+			<em id="apartado">Los campos marcados con * son considerados obligatorios</em>
+			<br>
+		</form>
+	</div>
+</body>
+</html>

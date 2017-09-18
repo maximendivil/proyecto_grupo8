@@ -1,0 +1,31 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+		<form method="POST" action="../controlador/establecerPaginacion.php">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>
+			<fieldset id="form1">
+				<legend>Paginaci&oacute;n del sitio</legend>
+				<div class="labels">
+					<label for="pag" id="item_label">Cantidad de elementos: </label>
+					<br>
+				</div>
+				<div class="inputs">
+					<?php
+						echo "<input type='number' id='pag' name='pag' value='$paginacion' required>";
+					?>
+					<br>
+				</div>
+			</fieldset>
+			<br>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+		</form>
+	</div>
+</body>
+</html>

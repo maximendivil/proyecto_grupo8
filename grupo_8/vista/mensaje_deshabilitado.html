@@ -1,0 +1,34 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+<div class="titulos">
+	<h2>Modificar mensaje de deshabilitación del sitio</h2>
+</div>
+		<form method="POST" action="../controlador/backend.php?controller=mensajeDeshabilitado">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>
+			<fieldset id="form1">
+				<legend>Mensaje para el sitio deshabilitado</legend>
+				<div class="labels">
+					<label for="msj" id="item_label">Mensaje: </label>
+					<br>
+				</div>
+				<div class="inputs">
+					<?php
+						echo "<textarea id='msj' name='msj' rows='5' cols='50' required>$msj</textarea>";
+					?>
+					<br>
+				</div>
+			</fieldset>
+			<br>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+		</form>
+	</div>
+</body>
+</html>

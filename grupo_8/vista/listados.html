@@ -1,0 +1,38 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+
+<div id="listado">
+			<table>
+				<caption>Listado de usuarios sin responsable asignado</caption>
+				<tr>
+					<th>Username</th><th>Email</th><th>Rol</th><th>Habilitado</th><th>Operaciones</th>
+				</tr>
+				<?php
+						for ($i=0; $i < count($rows); $i++) {
+							if ($rows[$i]["username"] != $_SESSION["usuario"]){
+								echo "<tr>";
+								echo "<td>".$rows[$i]["username"]."</td>";
+								echo "<td>".$rows[$i]['email']."</td>";
+								echo "<td>".$rows[$i]['rol']."</td>";
+								if ($rows[$i]['habilitado']){
+									echo "<td>SI</td>";	
+									echo "<td><a href='eliminar_usuario.php?user=".$rows[$i]["username"]."&valor=0'><i class='material-icons' title='Eliminar usuario'>delete</i></a>";
+								}
+								else {
+									echo "<td>NO</td>";
+									echo "<td><a href='eliminar_usuario.php?user=".$rows[$i]["username"]."&valor=1'><i class='material-icons' title='Dar de alta'>done</i></a>";
+								}
+								echo "<a href='../controlador/agregarResponsableUser.php?user=".$rows[$i]["username"]."'><i class='material-icons' title='Agregar responsable'>person_add</i></a> <a href='../controlador/cambiarRol.php?user=".$rows[$i]["username"]."'><i class='material-icons' title='Cambiar rol'>supervisor_account</i></a></td>"; 
+								
+								echo "</tr>";
+							}
+						}
+					
+				?>		
+			</table>
+		</div>
+			
+	</div>
+
+</html>

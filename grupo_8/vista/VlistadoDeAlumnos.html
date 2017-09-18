@@ -1,0 +1,53 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+<div class="titulos">
+	<h2>Listado de alumnos</h2>
+</div>
+		<div id="listado">
+			<?php 
+				if(isset($msjE)){
+					echo "<div id='mensajeError'>".$msjE."</div>";
+				}
+				else {
+					echo "<table>";
+					echo "<tr><th>Nombre</th><th>Apellido</th><th>DNI</th><th>Fecha de nacimiento</th><th>Sexo</th></th></tr>";
+					for ($i=0; $i < count($rows); $i++) {
+						echo "<tr>";						
+						echo "<td>".$rows[$i]['nombre']."</td>";
+						echo "<td>".$rows[$i]['apellido']."</td>";
+						echo "<td>".$rows[$i]['numeroDocumento']."</td>";
+						echo "<td>".$rows[$i]['fechaNacimiento']."</td>";
+						echo "<td>".$rows[$i]['sexo']."</td>";							
+						echo "</tr>";
+					}
+
+					echo "</table>";
+
+					echo "<div class='paginador'>";
+					if ($total_paginas > 1) { //Si solo hay una pagina, no muestro los botones "siguiente" y "anterior"
+					   	if ($pagina != 1){ //Si no es la primera, tengo que mostrar el boton "anterior" y llamar al controlador con el numero de pagina
+					   		$pag = $pagina-1;
+					    	echo "<a href='../controlador/backend.php?controller=listadoDeAlumnos&pagina=".$pag."'><button class='anterior'>Anterior</button></a>";
+					    }
+					    else {
+					    	echo "<button id='disabledAnterior' disabled>Anterior</button>"; //Boton deshabilitado
+					    }
+					    if ($pagina != $total_paginas){ //Si no es la ultima, tengo que mostrar el boton "siguiente" y llamar al controlador con el numero de pagina
+					    	$pag = $pagina+1;
+					    	echo "<a href='../controlador/backend.php?controller=listadoDeAlumnos&pagina=".$pag."'><button class='siguiente'>Siguiente</button></a>";
+					    }
+					    else {
+					    	echo "<button id='disabledSiguiente' disabled>Siguiente</button>"; //Boton deshabilitado
+					    }    
+					}
+					echo "</div>";
+				}
+					
+			?>		
+			
+		</div>
+			
+	</div>
+
+</html>

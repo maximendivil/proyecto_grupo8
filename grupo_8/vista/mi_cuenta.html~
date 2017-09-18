@@ -1,0 +1,24 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+		<div id="submenu">			
+				
+				<div id="itemMenu">
+					<div id="tituloMenu"><p>Usuarios</p></div>
+					<ul>
+						<li><a href="../controlador/registrarse.php">Agregar usuario</a></li>
+						<li><a href="../controlador/cambiar_roles.php">Cambiar roles</a></li>
+						<li><a href="../controlador/eliminar_cuenta.php">Habilitar/Deshabilitar usuarios</a></li>
+					</ul>
+				</div>
+				<div id="itemMenu">
+					<div id="tituloMenu"><p>Responsables</p></div>
+					<ul>
+						<li><a href="../controlador/agregar_responsable.php">Agregar un responsable</a></li>
+						<li><a href="../controlador/cambiar_responsable.php">Cambiar responsable</a></li>
+						<li><a href="../controlador/eliminar_responsable.php">Eliminar un responsable</a></li>
+					</ul>
+				</div>
+		</div>
+	</div>	
+</body>

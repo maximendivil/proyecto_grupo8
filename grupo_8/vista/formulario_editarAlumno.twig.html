@@ -1,0 +1,88 @@
+{% extends 'headerBackend.twig.html' %}
+
+{% block title %}Editar un alumno{% endblock %}
+
+{% block contenido %}
+<link rel="stylesheet" type="text/css" href="../leaflet/leaflet.css">
+ <script src="../leaflet/leaflet.js"></script>
+ <script src="../leaflet/routing/leaflet-routing-machine.js"></script>
+		<form method="POST" id="formAlumno" action="../controlador/backend.php?controller=controlador_editarAlumno&amp;idAlumno={{alumno.id}}">
+			<fieldset id="form1">
+				<legend>Modificando datos de {{alumno.nombre}}:</legend>
+				<div class="labels">
+					<label for="dni" id="item_label">DNI: </label>
+					<br>
+					<label for="apellido" id="item_label">Apellido(*) : </label>
+					<br>
+					<label for="nombre" id="item_label">Nombre(*) : </label>
+					<br>
+					<label for="fechaNac" id="item_label">Fecha de nacimiento(*) : </label>
+					<br>
+					<label for="sexo" id="item_label">Sexo(*) : </label>
+					<br>
+					<label for="mail" id="item_label">Mail: </label>
+					<br>
+					<label for="direccion" id="item_label">Dirección: </label>
+					<br>
+					<label for="fechaIngreso" id="item_label">Fecha de ingreso: </label>
+					<br>
+                                        <label id="item_label">Indique su dirección en el mapa (*) : </label>
+				</div>
+				<div class="inputs">
+					<input type="number" min="1" name="dni" required value="{{alumno.numeroDocumento}}">
+					<br>					
+					<input type="text" name="apellido" id="apellido" required value="{{alumno.apellido}}">
+					<br>					
+					<input type="text" name="nombre" id="nombre" required value="{{alumno.nombre}}">
+					<br>					
+					<input type="date" name="fechaNac" id="fechaNac" required value="{{alumno.fechaNacimiento}}">
+					<br>					
+					<select name="sexo">
+						<option value="M">M</option>
+						<option value="F">F</option>
+					</select>
+					<br>
+					<input type="email" name="mail" id="mail" required value="{{alumno.mail}}">
+					<br>
+					<input type="text" name="direccion" id="direccion" required value="{{alumno.direccion}}">
+					<br>
+					<input type="date" name="fechaIngreso" id="fechaIngreso" required value="{{alumno.fechaIngreso}}">
+					<br>
+                                        <input type="hidden" name="latitud" readonly id="latitud" required value="{{alumno.latitud}}">
+					<br>
+                                        <input type="hidden" name="longitud" readonly id="longitud" required value="{{alumno.longitud}}">
+					<br>
+                                         <div id="mapAlumno"></div>
+				</div>				
+			</fieldset>
+			<br>
+			<input id="enviar" type="submit" value="Modificar">
+			<br>
+		</form>
+ 
+ <script>
+    if (navigator.geolocation) navigator.geolocation.getCurrentPosition(crearMapa);
+    function crearMapa(position) {
+			miLat = position.coords.latitude;
+			miLon = position.coords.longitude;
+			var map = L.map('mapAlumno').setView([miLat,miLon], 12);
+                        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IjZjNmRjNzk3ZmE2MTcwOTEwMGY0MzU3YjUzOWFmNWZhIn0.Y8bhBaUMqFiPrDRW9hieoQ', {
+				maxZoom: 18,
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+					'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+					'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+				id: 'mapbox.streets'
+			}).addTo(map);
+                        
+                        marker = new L.marker(new L.LatLng(document.getElementById('latitud').value,document.getElementById('longitud').value), {id:'marcador', draggable:'true'});
+			
+			map.addLayer(marker);
+                         marker.on("dragend",function(ev){
+
+                         var pos = ev.target.getLatLng();
+                         document.getElementById('latitud').value = pos.lat;//.toFixed(5);
+	                 document.getElementById('longitud').value = pos.lng;//.toFixed(5);
+        });
+                    }
+</script> 
+{% endblock %}

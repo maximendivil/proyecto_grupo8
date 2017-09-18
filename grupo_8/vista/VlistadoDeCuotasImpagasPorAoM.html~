@@ -1,0 +1,30 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+		<div id="listado">
+			<?php
+				if(isset($msjE)){
+					echo "<div id='mensajeError'>".$msjE."</div>";
+				}
+				else {
+					echo "<table><caption>Listado de cuotas impagas</caption>";
+					echo "<tr><th>A&ntilde;o</th><th>Mes</th><th>N&uacute;mero</th><th>Tipo</th><th>Monto</th></tr>";
+					for ($i=0; $i < count($rows); $i++) {
+						echo "<tr>";
+						echo "<td>".$rows[$i]['anio']."</td>";
+						echo "<td>".$rows[$i]['mes']."</td>";
+						echo "<td>".$rows[$i]['numero']."</td>";
+						echo "<td>".$rows[$i]['tipo']."</td>";
+						echo "<td>$".$rows[$i]['monto']."</td>";								
+						echo "</tr>";
+					}
+
+					echo "</table>";
+				}
+					
+			?>
+		</div>
+			
+	</div>
+
+</html>

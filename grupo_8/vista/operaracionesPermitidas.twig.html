@@ -1,0 +1,15 @@
+{% block operacionesPermitidas %}
+
+	{% if rol == "administracion" %}
+	<li><a href='backend.php?controller=menuUsuarios'>Usuarios</a></li>
+    <li><a href='backend.php?controller=menuResponsables'>Responsables</a></li>
+    <li><a href='backend.php?controller=menuAlumnos'>Alumnos</a></li>
+    <li><a href='backend.php?controller=menuCuotas'>Cuotas</a></li>
+    <li><a href='backend.php?controller=menuConfig'>Configuraci&oacute;n</a></li>
+    {% endif %}
+
+    {% if rol == "gestion" %}
+    <li><a href='backend.php?controller=menuCuotas'>Cuotas y Matriculas</a></li>
+    {% endif %}
+
+{% endblock %}

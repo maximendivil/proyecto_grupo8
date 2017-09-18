@@ -1,0 +1,110 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+		<form method="POST" action="../controlador/backend.php?controller=controlador_editarResponsable&amp;idResponsable=<?php echo $rows[0]['id']; ?>">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>			
+			<fieldset id="form1">
+				<legend>Modificar datos de <?php echo $rows[0]['nombre'];?>:</legend>
+				<div class="labels">
+					<label for="apellidoTutor">Apellido del tutor(*) : </label>
+					<br>
+					<label for="nombreTutor">Nombre del tutor(*) : </label>
+					<br>
+					<label for="tipoParentezco">Tipo de parentezco del tutor(*) : </label>
+					<br>
+				</div>
+				<div class="inputs">			
+					<input type="text" name="apellidoTutor" id="apellidoTutor" required value="<?php echo $rows[0]['apellido']; ?>">
+					<br>				
+					<input type="text" name="nombreTutor" id="nombreTutor" required value="<?php echo $rows[0]['nombre'] ; ?>">
+					<br>
+					<select id="tipoParentezco" name="tipoParentezco" required>
+						<option value='' selected='selected' >Elige uno</option>
+						<?php
+							switch ($rows[0]["tipo"]) {
+								case 'madre':
+									echo "<option value='padre'>Padre</option>";
+									echo "<option value='madre' selected>Madre</option>";
+									echo "<option value='tutor'>Tutor</option>";
+									break;
+								case 'padre':
+									echo "<option value='padre' selected>Padre</option>";
+									echo "<option value='madre'>Madre</option>";
+									echo "<option value='tutor'>Tutor</option>";
+									break;
+								case 'tutor':
+									echo "<option value='padre'>Padre</option>";
+									echo "<option value='madre'>Madre</option>";
+									echo "<option value='tutor' selected>Tutor</option>";
+									break;
+									break;
+								default:
+									# code...
+									break;
+							}
+						?>
+					</select>
+					<br>
+				</div>
+			</fieldset>
+			<fieldset id="form4">
+				<legend>Información de contacto:</legend>
+				<div class="labels">
+					<label for="email">Email: </label>
+					<br>
+					<label for="tel">Telefono(*) : </label>
+					<br>
+					<label for="direccion">Direccion(*) : </label>
+					<br>
+					<label for="fechaAlta">Fecha de nacimiento(*) : </label>
+					<br>
+					<label for="sexo">Sexo(*) : </label>
+					<br>
+				</div>
+				<div id="inputs">
+					<input type="text" name="email" id="email" value="<?php echo $rows[0]['mail'] ;?>">
+					<br>						
+					<input type="text" name="tel" id="tel" required value="<?php echo $rows[0]['telefono'] ;?>">
+					<br>						
+					<input type="text" name="direccion" id="direccion" required value="<?php echo $rows[0]['direccion'] ;?>">
+					<br>						
+					<input type="date" name="fechaNac" id="fechaNac" required value="<?php echo $rows[0]['fechaNacimiento'] ;?>">
+					<br>
+					<select id="sexo" name="sexo" required>
+						<?php
+							switch ($rows[0]["sexo"]) {
+								case 'M':
+									echo "<option value='M' selected>Masculino</option>";
+									echo "<option value='F'>Femenino</option>";
+									break;
+								case 'F':
+									echo "<option value='M'>Masculino</option>";
+									echo "<option value='F' selected>Femenino</option>";
+									break;
+								default:
+									# code...
+									break;
+							}
+						?>
+					</select>
+					<br>
+				</div>
+				
+				
+			</fieldset>
+			<br>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+			<br>
+			<em id="apartado">Los campos marcados con * son considerados obligatorios</em>
+			<br>	
+		</form>
+	</div>
+</body>
+</html>

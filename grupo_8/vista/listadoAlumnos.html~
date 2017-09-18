@@ -1,0 +1,58 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+		<div id="listado">
+			<table>
+				<caption>Listado de alumnos de la escuela</caption>
+				<tr>
+					<th>DNI</th><th>Nombre</th><th>Apellido</th><th>Fecha de nacimiento</th><th>Valido</th><th>Operaciones de alumnos</th><th>Operaciones de responsables</th>
+				</tr>
+				{% if msjE is not defined %}
+						</table>
+						{{msjE}}
+				{% else %}
+					{% for alumno in alumnos}
+						<tr>
+						<td>{{alumno.numeroDocumento}}</td>
+						<td>{{alumno.nombre}}</td>
+						<td>{{alumno.apellido}}</td>
+						<td>{{alumno.fechaNacimiento}}</td>
+						{% if alumno.valido %}
+							<td>SI</td>	
+							<td><a href='../controlador/backend.php?controller=deshabilitarAlumno&amp;id=".$rows[$i]["id"]."&valor=0'><i class='material-icons' title='Deshabilitar alumno.'>delete</i></a>
+						{% else %}
+								<td>NO</td>
+								<td><a href='../controlador/backend.php?controller=habilitarAlumno&amp;id=".$rows[$i]["id"]."&valor=1'><i class='material-icons' title='Habilitar alumno.'>done</i></a>
+						{% endif %}						
+							<a href='../controlador/backend.php?controller=formulario_editarAlumno&amp;id=".$rows[$i]["id"]."'><i class='material-icons' title='Editar alumno.'>edit</i></a>
+							<td><a href='../controlador/backend.php?controller=agregarResponsableAlumno&amp;idAlumno=".$rows[$i]["id"]."'><i class='material-icons' title='Agregar un responsable a este alumno.'>person_add</i></a><a href='../controlador/backend.php?controller=eliminarResponsableAlumno&idAlumno=".$rows[$i]["id"]."'><i class='material-icons' title='Desligar un responsable de este alumno.'>cancel</i></a></td>				
+							</tr>
+						}
+						</table>
+
+						echo "<div class='paginador'>";
+						if ($total_paginas > 1) { //Si solo hay una pagina, no muestro los botones "siguiente" y "anterior"
+						   	if ($pagina != 1){ //Si no es la primera, tengo que mostrar el boton "anterior" y llamar al controlador con el numero de pagina
+						   		$pag = $pagina-1;
+						    	echo "<a href='../controlador/backend.php?controller=listadosAlumnos&pagina=".$pag."'><button class='anterior'>Anterior</button></a>";
+						    }
+						    else {
+						    	echo "<button id='disabledAnterior' disabled>Anterior</button>"; //Boton deshabilitado
+						    }
+						    if ($pagina != $total_paginas){ //Si no es la ultima, tengo que mostrar el boton "siguiente" y llamar al controlador con el numero de pagina
+						    	$pag = $pagina+1;
+						    	echo "<a href='../controlador/backend.php?controller=listadosAlumnos&pagina=".$pag."'><button class='siguiente'>Siguiente</button></a>";
+						    }
+						    else {
+						    	echo "<button id='disabledSiguiente' disabled>Siguiente</button>"; //Boton deshabilitado
+						    }    
+						}
+						echo "</div>";
+					}
+					
+				?>
+		</div>
+			
+	</div>
+
+</html>

@@ -1,0 +1,63 @@
+
+<?php
+	require("../vista/headerBackend.php");
+?>
+		<form method="POST" action="../controlador/backend.php?controller=controlador_agregarAlumno" id="formAlumno">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>
+			<fieldset id="form1">
+				<legend>Agregar un alumno</legend>
+				<div class="labels">
+					<label for="dni" id="item_label">DNI(*): </label>
+					<br>
+					<label for="apellido" id="item_label">Apellido(*) : </label>
+					<br>
+					<label for="nombre" id="item_label">Nombre(*) : </label>
+					<br>
+					<label for="fechaNac" id="item_label">Fecha de nacimiento(*) : </label>
+					<br>
+					<label for="sexo" id="item_label">Sexo(*) : </label>
+					<br>
+					<label for="mail" id="item_label">Mail(*): </label>
+					<br>
+					<label for="direccion" id="item_label">Dirección(*): </label>
+					<br>
+					<label for="fechaIngreso" id="item_label">Fecha de ingreso(*): </label>
+					<br>
+				</div>
+				<div class="inputs">
+					<input type="number" name="dni" required>
+					<br>
+					<input type="text" name="apellido" id="apellido" required>
+					<br>
+					<input type="text" name="nombre" id="nombre" required>
+					<br>
+					<input type="date" name="fechaNac" id="fechaNac" required>
+					<br>
+					<select name="sexo" id="sexo" form="formAlumno">
+						<option value="M">M</option>
+						<option value="F">F</option>
+					</select>
+					<br>
+					<input type="mail" name="mail" id="mail" required>
+					<br>
+					<input type="text" name="direccion" id="direccion" required>
+					<br>
+					<input type="date" name="fechaIngreso" id="fechaIngreso" required>
+					<br>
+				</div>
+			</fieldset>
+			<br>
+			<input id="enviar" type="submit" value="Agregar">
+			<br>
+			<br>
+			<em id="apartado">Los campos marcados con * son considerados obligatorios</em>
+			<br>	
+		</form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+
+<?php
+	session_start();
+	require("../vista/headerBackend.php");
+?>
+		<form method="POST" id="formAlumno" action="../controlador/controlador_editar_alumno.php?id=<?php echo $rows[0]['id']; ?>">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>
+			<fieldset id="form1">
+				<legend>Modificando datos de <?php echo $rows[0]['nombre'] ; ?>:</legend>
+				<div class="labels">
+					<label for="dni" id="item_label">DNI: </label>
+					<br>
+					<label for="apellido" id="item_label">Apellido(*) : </label>
+					<br>
+					<label for="nombre" id="item_label">Nombre(*) : </label>
+					<br>
+					<label for="fechaNac" id="item_label">Fecha de nacimiento(*) : </label>
+					<br>
+					<label for="sexo" id="item_label">Sexo(*) : </label>
+					<br>
+					<label for="mail" id="item_label">Mail: </label>
+					<br>
+					<label for="direccion" id="item_label">Dirección: </label>
+					<br>
+					<label for="fechaIngreso" id="item_label">Fecha de ingreso: </label>
+					<br>
+				</div>
+				<div class="inputs">
+					<input type="number" name="dni" required value="<?php echo $rows[0]['numeroDocumento']; ?>">
+					<br>					
+					<input type="text" name="apellido" id="apellido" required value="<?php echo $rows[0]['apellido'] ; ?>">
+					<br>					
+					<input type="text" name="nombre" id="nombre" required value="<?php echo $rows[0]['nombre'] ; ?>">
+					<br>					
+					<input type="date" name="fechaNac" id="fechaNac" required value="<?php echo $rows[0]['fechaNacimiento'] ; ?>">
+					<br>					
+					<select name="sexo">
+						<option value="M">M</option>
+						<option value="F">F</option>
+					</select>
+					<br>
+					<input type="mail" name="mail" id="mail" required value="<?php echo $rows[0]['mail'] ; ?>">
+					<br>
+					<input type="text" name="direccion" id="direccion" required value="<?php echo $rows[0]['direccion'] ; ?>">
+					<br>
+					<input type="date" name="fechaIngreso" id="fechaIngreso" required value="<?php echo $rows[0]['fechaIngreso'] ; ?>">
+					<br>
+				</div>				
+			</fieldset>
+			<br>
+			<input id="enviar" type="submit" value="Modificar">
+			<br>
+		</form>
+</body>
+</html>

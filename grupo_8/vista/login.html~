@@ -1,0 +1,55 @@
+<?php
+	require("../controlador/header.php");
+?>
+<body id="fondo">		
+	<div id="contenido">
+		<div id="encabezado">
+			<div id="titulo"> 
+				<h1>Cooperativa de la Escuela Joaquín V. González</h1>
+				<h5>Escuela de la Universidad Nacional de La Plata</h5>
+			</div>
+			<div id="login"> 
+			</div>
+			<div id="fotoPortada">
+				<img id="img" src="../fotoEscuela.jpg" alt="Frente de la escuela Anexa">
+			</div>
+		
+			<div id="menu">
+				<ul>
+					<li><a href="../controlador/index.php">Inicio</a></li>
+				</ul>
+			</div>
+		</div>
+		<form method="POST" action="../controlador/controlador_login.php">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>
+			<fieldset>				
+				<legend>Iniciar sesión</legend>					
+				<div class="labels">
+					<label for="usuario" id="item_label">Usuario(*) :</label>
+					<br>
+					<label for="contraseña" id="item_label">Contraseña(*) :</label>
+					<br>
+				</div>
+				<div id="inputs">
+					<input type="text" name="usuario" id="usuario" required>
+					<br>
+					<input type="password" name="contraseña" id="contraseña" required>
+					<br>
+				</div>
+			</fieldset>
+			<br>
+			<input type="submit" name="loguearse" id="enviar">
+			<br>
+			<br>
+			<em id="apartado">Los campos marcados con * son considerados obligatorios</em>
+			<br>
+
+		</form>
+	</div>
+</body>

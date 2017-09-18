@@ -1,0 +1,67 @@
+{% extends 'headerBackend.twig.html' %}
+
+{% block title %}Menu cuotas{% endblock %}
+
+{% block contenido %}
+	<div class="titulos">
+	<h2>Cuotas</h2>
+</div>
+<div class="operacionesDisponibles">
+	<p>Operaciones de cuotas: </p>
+	<ul>
+                <li>Editar cuota: <i class='material-icons' title='Editar cuota'>edit</i></li>
+		<li>Eliminar cuota: <i class='material-icons' title='Eliminar cuota'>delete</i></li>
+	</ul>
+</div>
+
+<div id="addUser">
+	<a href="../controlador/backend.php?controller=formulario_AgregarCuota"><button>Crear cuota</button></a>
+</div>
+<div id="addUser">
+	<a href="../controlador/backend.php?controller=verPagos&pagina=1"><button>Registrar pago de cuota/matricula</button></a>
+</div>
+<div id="listado">				
+	
+	{% if msj is defined %}
+	<div id='mensajeError'>{{msj}}</div>
+	{% endif %}
+		<table>
+			<tr>
+				<th>Año</th>
+				<th>Mes</th>
+				<th>Monto</th>
+				<th>Tipo</th>
+				<th>Porcentaje de comisión al cobrador</th>
+                                <th>Fecha de alta</th>
+                                <th>Operaciones</th>
+			</tr>
+			{% for cuota in cuotas %}
+				<tr>
+					<td>{{cuota.anio}}</td>
+					<td>{{cuota.mes}}</td>
+					<td>{{cuota.monto}}</td>
+                                        <td>{{cuota.tipo}}</td>
+                                        <td>{{cuota.comisionCobrador}}%</td>
+                                        <td>{{cuota.fechaAlta}}</td>
+					<td><a href='../controlador/backend.php?controller=formulario_editarCuota&amp;idCuota={{cuota.id}}'><i class='material-icons' title='Editar cuota'>edit</i></a><a href='../controlador/backend.php?controller=eliminarCuotaBD&amp;idCuota={{cuota.id}}'><i class='material-icons' title='Eliminar cuota'>delete</i></a></td>
+				</tr>								
+			{% endfor %}
+			</table>
+			<div class='paginador'>
+				{% if total_paginas > 1 %}
+				   	{% if pagina != 1 %}
+						<a href='../controlador/backend.php?controller=listado_cuotas&pagina={{pagina - 1}}'><button class='anterior'>Anterior</button></a>
+					{% endif %}
+					{% if pagina == 1 %}
+						<button id='disabledAnterior' disabled>Anterior</button>
+					{% endif %}
+					{% if pagina != total_paginas %}
+						<a href='../controlador/backend.php?controller=listado_cuotas&pagina={{pagina + 1}}'><button class='siguiente'>Siguiente</button></a>
+					{% endif %}
+					{% if pagina == total_paginas %}
+						<button id='disabledSiguiente' disabled>Siguiente</button>
+					{% endif %}    
+				{% endif %}
+			</div>
+	</div>
+{% endblock %}

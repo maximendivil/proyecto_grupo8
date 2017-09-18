@@ -1,0 +1,40 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+<div class="titulos">
+	<h2>Habilitar o deshabilitar el sitio</h2>
+</div>
+		<form method="POST" action="../controlador/backend.php?controller=habilitarSitio">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>
+			<fieldset id="form1">
+				<legend>Habilitar/Deshabilitar el sitio</legend>
+				<div class="labels">
+					<label for="hab" id="item_label">Sitio habilitado: </label>
+					<br>
+				</div>
+				<div class="inputs">
+					<?php
+						if ($habilitado){
+							//echo "<input type='checkBox' name='hab' id='hab' value='$habilitado' checked>";
+							echo "<button id='hab' name='dehab'>Deshabilitar</button>";
+						}
+						else {
+							echo "<button id='hab' name='hab'>Habilitar</button>";
+						}
+					?>
+					<br>
+				</div>
+			</fieldset>
+			<br>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+		</form>
+	</div>
+</body>
+</html>

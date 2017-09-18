@@ -1,0 +1,105 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+
+		<div id="listado">
+
+			<!--<div id="filter">
+				<form action="../controlador/pago_cuotas.php" method="POST">
+					<label for="buscador" id="labelBuscador">DNI:</label>
+					<input type="text" id="buscador" name="buscador">
+					<input type="submit" id="submitBuscador">
+				</form>
+			</div>-->
+			<?php
+				if (isset($rows)){
+
+					if(isset($msjError)){
+						echo "<div id='errorListado'><p>$msjError</p></div>";
+					}
+					else {
+						//Muestro las cuotas impagas
+						if(isset($_SESSION["error"])){
+							echo "<div id='errorListado'><p>".$_SESSION["error"]."</p></div>";
+						}	
+
+						echo "<form action='../controlador/pagarCuota.php?id=".$idAlumno."' method='POST'>";
+						echo "<table>";
+						echo "<caption>Listado de cuotas impagas</caption>";
+						echo"<tr><th>A&ntilde;o</th><th>Mes</th><th>N&uacute;mero de cuota</th><th>Valor</th><th>Tipo</th><th>Seleccionar</th></tr>";		
+
+						for ($i=0; $i < count($rows); $i++) {
+							echo "<tr>";									
+							echo "<td>".$rows[$i]['anio']."</td>";
+							echo "<td>".$rows[$i]["mes"]."</td>";
+							echo "<td>".$rows[$i]['numero']."</td>";
+							echo "<td>$".$rows[$i]['monto']."</td>";
+							echo "<td>".$rows[$i]['tipo']."</td>";									
+							//echo "<td><a href='pagarCuota.php?idCuota=".$rows[$i]["id"]."'><i class='material-icons'>payment</i></a></td>";
+							echo "<td><input type='checkbox' name='cuota[]' value='".$rows[$i]["id"]."'></td>";
+							echo "</tr>";
+							
+						}
+							
+						
+						echo "</table>";
+
+						/*if ($total_paginas > 1) {
+						   	if ($pagina != 1){
+						    	echo "<a href='../controlador/pago_cuotas.php?id=$idAlumno&pagina=".($pagina-1)."'><button>Anterior</button></a>";
+						    }
+						    else {
+						    }
+						    if ($pagina != $total_paginas){
+						    	echo "<a href='../controlador/pago_cuotas.php?id=$idAlumno&pagina=".($pagina+1)."'><button>Siguiente</button></a>";
+						    }
+						    else {
+						    }
+    
+						}*/
+
+						echo "<div id='operacionesCobro'><button type='submit' name='cobrar'>Cobrar</button><button type='submit' name='becar'>Becar</button></div>";
+						echo "</form>";
+						
+					}
+				}
+				if (isset($rowsPagas)){
+
+					//Muestro las cuotas pagas
+					if(isset($msjErrorPagas)){
+						echo "<div id='errorListado'><p>$msjErrorPagas</p></div>";
+					}
+					else {
+						echo "<table>";
+						echo "<caption>Listado de cuotas pagas</caption>";
+						echo"<tr><th>A&ntilde;o</th><th>Mes</th><th>N&uacute;mero de cuota</th><th>Valor</th><th>Tipo</th><th>Fecha</th><th></tr>";
+						
+								for ($i=0; $i < count($rowsPagas); $i++) {
+									echo "<tr>";									
+									echo "<td>".$rowsPagas[$i]['anio']."</td>";
+									echo "<td>".$rowsPagas[$i]["mes"]."</td>";
+									echo "<td>".$rowsPagas[$i]['numero']."</td>";
+									echo "<td>$".$rowsPagas[$i]['monto']."</td>";
+									//Me fijo si fue becada o no la cuota
+									if ($rowsPagas[$i]['becado'] == 0){
+										echo "<td>".$rowsPagas[$i]['tipo']."</td>";
+									}
+									else {
+										echo "<td>Becada</td>";
+									}
+									echo "<td>".$rowsPagas[$i]['fecha']."</td>";								
+									echo "</tr>";
+									
+								}
+							
+						
+						echo "</table>";
+					}
+
+				}
+			?>
+		</div>
+			
+	</div>
+
+</html>

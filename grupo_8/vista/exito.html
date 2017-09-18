@@ -1,0 +1,14 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+
+<div id="mensajeExito">
+			<?php 
+				echo "<center><h3>$msjExito</h3></center>";
+				header("refresh:3; url =  ../controlador/backend.php?controller=cambiarRoles&pagina=1");
+			?>
+		</div>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="../Alumnos/styles.css">
+	<title>WEB EXTERNA INGRESOS</title>
+</head>
+<body id="fondo">
+	<div id="contenido">
+		<form action="grafico.php" method="POST">
+			<fieldset>
+				<legend>Consultar ingresos por año</legend>
+				<div class="labels">
+					<label for="anio">AÑO:</label>
+					<br>
+				</div>
+				<div id="inputs">
+					<input type="number" min=1900 max=3000 name="anio" required>
+					<br>
+				</div>
+			</fieldset>
+			<br>
+			<input type="submit" name="submit" id="enviar" value="Consultar">
+			<br>
+		</form>
+	</div>	
+</body>
+</html>

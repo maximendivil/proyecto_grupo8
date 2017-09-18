@@ -1,0 +1,78 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+		<form method="POST" action="../controlador/backend.php?controller=controlador_agregarResponsableGeneral">
+			<div id="errorLogin">
+				<?php
+					if (isset($msjError)){
+						echo $msjError;
+					}
+				?>
+			</div>			
+			<fieldset id="form1">
+				<legend>Agregar responsable:</legend>
+				<div class="labels">
+					<label for="apellidoTutor">Apellido del tutor(*) : </label>
+					<br>
+					<label for="nombreTutor">Nombre del tutor(*) : </label>
+					<br>
+					<label for="tipoParentezco">Tipo de parentezco del tutor(*) : </label>
+					<br>
+				</div>
+				<div class="inputs">			
+					<input type="text" name="apellidoTutor" id="apellidoTutor" required>
+					<br>				
+					<input type="text" name="nombreTutor" id="nombreTutor" required>
+					<br>
+					<select id="tipoParentezco" name="tipoParentezco" required>
+						<option value='' selected='selected' >Elige uno</option>
+						<option value="padre">Padre</option>
+						<option value="madre">Madre</option>
+						<option value="tutor">Tutor</option>
+					</select>
+					<br>
+				</div>
+			</fieldset>
+			<fieldset id="form4">
+				<legend>Información de contacto:</legend>
+				<div class="labels">
+					<label for="email">Email: </label>
+					<br>
+					<label for="tel">Telefono(*) : </label>
+					<br>
+					<label for="direccion">Direccion(*) : </label>
+					<br>
+					<label for="fechaNac">Fecha de nacimiento(*) : </label>
+					<br>
+					<label for="sexo">Sexo(*) : </label>
+					<br>
+				</div>
+				<div id="inputs">
+					<input type="mail" name="email" id="email">
+					<br>						
+					<input type="number" name="tel" min="0" id="tel" required>
+					<br>						
+					<input type="text" name="direccion" id="direccion" required>
+					<br>						
+					<input type="date" name="fechaNac" id="fechaNac" required>
+					<br>
+					<select id="sexo" name="sexo" required>
+						<option value='' selected='selected' >Elige uno</option>
+						<option value="M">Masculino</option>
+						<option value="F">Femenino</option>
+					</select>
+					<br>
+				</div>
+				
+				
+			</fieldset>
+			<br>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+			<br>
+			<em id="apartado">Los campos marcados con * son considerados obligatorios</em>
+			<br>
+		</form>
+	</div>
+</body>
+</html>

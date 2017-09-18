@@ -1,0 +1,15 @@
+<?php
+	require("../vista/headerBackend.php");
+?>
+		<div id="submenu">			
+				
+				<div id="itemMenu">
+					<div id="tituloMenu"><p>Alumnos</p></div>
+					<ul>
+						<li><a href="../controlador/formulario_alumnos.php">Agregar un alumno</a></li>
+						<li><a href="../controlador/backend.php?controller=listadosAlumnos">Más operaciones de alumnos</a></li>
+					</ul>
+				</div>
+		</div>
+	</div>	
+</body>

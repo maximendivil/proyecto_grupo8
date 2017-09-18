@@ -1,0 +1,19 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+		<div id="submenu">
+			
+				
+				<div id="itemMenu">
+					<div id="tituloMenu"><p>Configuraci&oacute;n</p></div>
+					<ul>
+						<li><a href="../controlador/informacion.php">Informaci&oacute;n de la cooperadora</a></li>
+						<li><a href="../controlador/paginacion.php">Paginaci&oacute;n</a></li>
+						<li><a href="../controlador/habilitar_sitio.php">Habilitar/Deshabilitar el sitio</a></li>
+						<li><a href="../controlador/mensaje_deshabilitado.php">Mensaje de deshabilitaci&oacute;n</a></li>
+					</ul>
+				</div>
+				
+		</div>
+	</div>	
+</body>

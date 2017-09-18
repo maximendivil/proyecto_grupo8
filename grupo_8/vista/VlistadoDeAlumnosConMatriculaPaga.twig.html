@@ -1,0 +1,81 @@
+{% extends 'headerBackend.twig.html' %}
+
+{% block title %}Menu inicio{% endblock %}
+
+{% block saludo %}
+	{{ usuario }}
+{% endblock %}
+
+{% block titulo %}
+	{{ titulo }}
+{% endblock %}
+
+{% block operacionesPermitidas %}
+
+	{% if rol == "administracion" %}
+	<li><a href='backend.php?controller=menuUsuarios'>Usuarios</a></li>
+    <li><a href='backend.php?controller=menuResponsables'>Responsables</a></li>
+    <li><a href='backend.php?controller=menuAlumnos'>Alumnos</a></li>
+    <li><a href='backend.php?controller=menuCuotas'>Cuotas</a></li>
+    <li><a href='backend.php?controller=menuConfig'>Configuraci&oacute;n</a></li>
+    {% endif %}
+
+    {% if rol == "gestion" %}
+    <li><a href='backend.php?controller=menuCuotas'>Cuotas y Matriculas</a></li>
+    {% endif %}
+
+{% endblock %}
+
+{% block contenido %}
+	<div class="titulos">
+		<h2>Listado de alumnos con matrícula paga</h2>
+	</div>
+	<div id="listado">
+	
+	{% if msj is defined %}
+		{{msj}}
+	{% endif %}
+	{% if cuotas is defined %}
+	<table>
+	<tr><th>A&ntilde;o</th><th>Mes</th><th>N&uacute;mero</th><th>Tipo</th><th>Monto</th><th>DNI</th><th>Nombre</th><th>Apellido</th></tr>
+		{% for cuota in cuotas %}
+			<tr>
+				<td>{{ cuota.anio }}</td>
+				<td>{{ cuota.mes }}</td>
+				<td>{{ cuota.numero }}</td>
+				<td>{{ cuota.tipo }}</td>
+				<td>{{ cuota.monto }}</td>						
+				<td>{{ cuota.numeroDocumento }}</td>
+				<td>{{ cuota.nombre }}</td>
+				<td>{{ cuota.apellido }}</td>								
+			</tr>
+		{% endfor%}
+	</table>
+	<!--Aca se usa el paginador
+	//Si es la primera pagina, no se muestra el boton anterior.
+	//Si es la ultima pagina, no se muestra el boton siguiente.-->
+	<div class='paginador'>
+		{% if total > 1 %} <!-- //Si solo hay una pagina, no muestro los botones "siguiente" y "anterior" -->
+			   	{% if pagina != 1 %} <!--Si no es la primera, tengo que mostrar el boton "anterior" y llamar al controlador con el numero de pagina-->
+			   		
+			    	<a href='../controlador/backend.php?controller=listadosMatriculasPagas&pagina={{ pagina - 1 }}'><button class='anterior'>Anterior</button></a>
+			    {% endif %}
+			    {% if pagina == 1 %}
+			    	<button id='disabledAnterior' disabled>Anterior</button>
+			    {% endif %}
+			    {% if pagina != total %} <!--//Si no es la ultima, tengo que mostrar el boton "siguiente" y llamar al controlador con el numero de pagina-->
+			    	
+			    	<a href='../controlador/backend.php?controller=listadosMatriculasPagas&pagina={{ pagina + 1}}'><button class='siguiente'>Siguiente</button></a>
+			    {% endif %}
+			    {% if pagina == total %}
+			    	<button id='disabledSiguiente' disabled>Siguiente</button>
+			    {% endif %}    
+		{% endif %}
+	</div>
+	<a href='../controlador/backend.php?controller=exportarListadoDeMatriculas'>Exportar a PDF</a>
+	
+	{% endif %}
+		
+	
+	</div>
+{% endblock %}

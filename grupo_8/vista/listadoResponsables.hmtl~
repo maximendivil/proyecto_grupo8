@@ -1,0 +1,33 @@
+<?php
+	session_start();
+	require("../controlador/headerBackend.php");
+?>
+		<div id="listado">
+			<table>
+				<caption>Listado de alumnos de la escuela</caption>
+				<tr>
+					<th>DNI</th><th>Nombre</th><th>Apellido</th><th></th><th>Operaciones</th>
+				</tr>
+				<?php
+					if(isset($msjE)){
+						echo "</table>";
+						echo "<div id='mensajeError'>".$msjE."</div>";
+					}
+					else {
+						for ($i=0; $i < count($rows); $i++) {
+							echo "<tr>";
+							echo "<td>".$rows[$i]["numeroDocumento"]."</td>";
+							echo "<td>".$rows[$i]["nombre"]."</td>";
+							echo "<td>".$rows[$i]['apellido']."</td>";							
+							echo "<td><a href='../controlador/controlador_asignarResponsableAlumno.php?idAlumno=".$rows[$i]["id"]."'><i class='material-icons'>done</i></a><a href='../controlador/editar_responsable.php?id=".$rows[$i]["id"]."'><i class='material-icons'>edit</i></a><a href='../controlador/eliminar_alumno.php?id=".$rows[$i]["id"]."'><i class='material-icons'>cancel</i></a></td>";
+							echo "</tr>";
+						}
+					}
+					
+				?>		
+			</table>
+		</div>
+			
+	</div>
+
+</html>

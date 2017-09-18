@@ -1,0 +1,66 @@
+{% extends 'headerBackend.twig.html' %}
+
+{% block title %}Menu inicio{% endblock %}
+
+{% block saludo %}
+	{{ usuario }}
+{% endblock %}
+
+{% block titulo %}
+	{{ titulo }}
+{% endblock %}
+
+{% block contenido %}
+	<div class="titulos">
+		<h2>Elegir gestor para calcular su comisi&oacute;n</h2>
+	</div>
+	<div class="operacionesDisponibles">
+		<p>Operaciones disponibles:</p>
+		<ul>
+			<li>Seleccionar el botón "Ver comisi&oacute;n" para ver el total de comisiones a cobrar por el usuario.</li>
+		</ul>
+	</div>
+	<div id="listado">
+	
+	{% if msj is defined %}
+		{{msj}}
+	{% endif %}
+	{% if usuarios is defined %}
+	<table>
+	<caption>Listado de gestores</caption>
+	<tr><th>Usuario</th><th>Rol</th><th>Mail</th><th>Acci&oacute;n</th></tr>
+		{% for usuario in usuarios %}
+			<tr>
+				<td>{{ usuario.username }}</td>
+				<td>{{ usuario.rol }}</td>
+				<td>{{ usuario.email }}</td>
+				<td><a href='../controlador/backend.php?controller=verComisiones&id={{usuario.id}}&pagina=1'><button>Ver comisi&oacute;n</button></a></td>							
+			</tr>
+		{% endfor%}
+	</table>
+	<!--Aca se usa el paginador
+	//Si es la primera pagina, no se muestra el boton anterior.
+	//Si es la ultima pagina, no se muestra el boton siguiente.-->
+	<div class='paginador'>
+		{% if total > 1 %} <!-- //Si solo hay una pagina, no muestro los botones "siguiente" y "anterior" -->
+			   	{% if pagina != 1 %} <!--Si no es la primera, tengo que mostrar el boton "anterior" y llamar al controlador con el numero de pagina-->
+			   		
+			    	<a href='../controlador/backend.php?controller=listadoDeComisiones&pagina={{ pagina - 1 }}'><button class='anterior'>Anterior</button></a>
+			    {% endif %}
+			    {% if pagina == 1 %}
+			    	<button id='disabledAnterior' disabled>Anterior</button>
+			    {% endif %}
+			    {% if pagina != total %} <!--//Si no es la ultima, tengo que mostrar el boton "siguiente" y llamar al controlador con el numero de pagina-->
+			    	
+			    	<a href='../controlador/backend.php?controller=listadoDeComisiones&pagina={{ pagina + 1}}'><button class='siguiente'>Siguiente</button></a>
+			    {% endif %}
+			    {% if pagina == total %}
+			    	<button id='disabledSiguiente' disabled>Siguiente</button>
+			    {% endif %}    
+		{% endif %}
+	</div>	
+	{% endif %}
+		
+	
+	</div>
+{% endblock %}

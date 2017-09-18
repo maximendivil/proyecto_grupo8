@@ -1,0 +1,33 @@
+<?php
+	session_start();
+	require("../vista/headerBackend.php");
+?>
+		<div id="listado">
+			<table>
+				<caption>Listado de responsables en la escuela</caption>
+				<tr>
+					<th>Nombre</th><th>Apellido</th><th>Mail</th><th>Operaciones</th>
+				</tr>
+				<?php
+					if(isset($msjE)){
+						echo "</table>";
+						echo "<div id='mensajeError'>".$msjE."</div>";
+					}
+					else {
+						for ($i=0; $i < count($rows); $i++) {
+							echo "<tr>";
+							echo "<td>".$rows[$i]["nombre"]."</td>";
+							echo "<td>".$rows[$i]["apellido"]."</td>";
+							echo "<td>".$rows[$i]['mail']."</td>";							
+							echo "<td><a href='../controlador/controlador_eliminarResponsableIco.php?idResponsable=".$rows[$i]["id"]."'><i class='material-icons'>cancel</i></a></td>";
+							echo "</tr>";
+						}
+					}
+					
+				?>		
+			</table>
+		</div>
+			
+	</div>
+
+</html>

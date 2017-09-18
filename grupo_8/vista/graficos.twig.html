@@ -1,0 +1,134 @@
+{% extends 'headerBackend.twig.html' %}
+
+{% block title %}Menu inicio{% endblock %}
+{% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript">
+	$(function () {
+			$('#container').highcharts({
+				chart: {
+					plotBackgroundColor: null,
+					plotBorderWidth: 1,//null,
+					plotShadow: false
+				},
+				title: {
+					text: 'Cuotas pagadas por clientes'
+				},
+				tooltip: {
+					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				},
+				plotOptions: {
+					pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						dataLabels: {
+							enabled: true,
+							format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+							style: {
+								color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+							}
+						}
+					}
+				},
+				series: [{
+					type: 'pie',
+					name: 'Cuotas pagadas',
+					data: [
+					
+						{% for e in pagos %}
+			  
+							[ '{{ e.nombre }}', {{e.porcentaje}} ],
+					
+						{% endfor %}
+					]
+				}]
+			});
+		});
+	$(function () {
+	    $('#container2').highcharts({
+	        chart: {
+	            type: 'column'
+	        },
+	        title: {
+	            text: ''
+	        },
+	        subtitle: {
+	            text: ''
+	        },
+	        xAxis: {
+	            categories: [
+	                'Pagos'
+	            ],
+	            crosshair: true
+	        },
+	        yAxis: {
+	            min: 0,
+	            title: {
+	                text: 'Cuotas'
+	            }
+	        },
+	        tooltip: {
+	            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+	            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+	                '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+	            footerFormat: '</table>',
+	            shared: true,
+	            useHTML: true
+	        },
+	        plotOptions: {
+	            column: {
+	                pointPadding: 0.2,
+	                borderWidth: 0
+	            }
+	        },
+	        series: [
+	        {% for e in pagos %}
+			{% if e.nombre == "Matrículas" %}
+			{
+				name: '{{ e.nombre }}', 
+				data: [ {{e.porcentaje}} ]
+			}
+			{% endif %}
+			{% if e.nombre == "Cuotas" %}  
+			{
+				name: '{{ e.nombre }}', 
+				data: [ {{e.porcentaje}} ]
+			},
+			{% endif %}		
+			{% endfor %}
+			]
+	    });
+	});
+
+</script>
+{% endblock %}
+{% block saludo %}
+	{{ usuario }}
+{% endblock %}
+
+{% block titulo %}
+	{{ titulo }}
+{% endblock %}
+
+{% block contenido %}	
+	<div class="titulos">
+		<h2>Estad&iacute;sticas de ingresos por cuota y matr&iacute;cula, por mes y año</h2>
+	</div>
+	<div id="listado">
+	
+	{% if msj is defined %}
+		{{msj}}
+	{% endif %}	
+	<h3>Ingresos totales: ${{total}}</h3>
+	<h3>Ingresos por cuota: ${{cuotas}}</h3>
+	<h3>Ingresos por matr&iacute;cula: ${{matriculas}}</h3>
+
+	<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+	<center><h3>Gr&aacute;fico de barras</h3></center>
+	<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+	<!--<a href='../controlador/backend.php?controller=exportarListadoDeAlumnos'>Exportar a PDF</a>-->
+	</div>
+{% endblock %}

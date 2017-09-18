@@ -1,0 +1,205 @@
+{% extends 'headerBackend.twig.html' %}
+
+{% block title %}Editar cuota{% endblock %}
+
+{% block contenido %}
+<div class="titulos">
+	<h2>Editar una cuota del sistema</h2>
+</div>
+		<form method="POST" action="../controlador/backend.php?controller=editarCuotaBD&amp;idCuota={{cuota.id}}">		
+			<fieldset id="form1">
+				<legend>Editar cuota:</legend>
+				<div class="labels">
+					<label for="monto">Monto(*) : </label>
+					<br>					
+					<label for="comisionCobrador">Porcentaje de comisión al cobrador(*) : </label>
+					<br>
+                                        <label for="anioCuota">Año de la cuota(*) : </label>
+					<br>
+                                        {% if cuota.tipo == "mensual" %}
+                                            <label for="mesCuota">Mes de la cuota(*) : </label>
+                                        {% endif %}
+                                        <br>
+				</div>
+				<div class="inputs">
+                                        <input type="number" name="monto" id="monto" value="{{cuota.monto}}" min="0" required>
+					<br>					
+					<input type="number" name="comisionCobrador" id="comisionCobrador" value="{{cuota.comisionCobrador}}" min="0" max="100" required>
+					<br>
+					<input type="number" name="anioCuota" id="anioCuota" min="1900" value="{{cuota.anio}}" required>
+					<br>
+                                        {% if cuota.tipo == "mensual" %}
+					<select id="mes" name="mes" required>
+                                            {% if cuota.mes == 1 %}
+                                                <option value='1' selected>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 2 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2' selected>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 3 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3' selected>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 4 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4' selected>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 5 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5' selected>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 6 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6' selected>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 7 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7' selected>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 8 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8' selected>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 9 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9' selected>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 10 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10' selected>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 11 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11' selected>Noviembre</option>
+                                                <option value='12'>Diciembre</option>
+                                            {% elseif cuota.mes == 12 %}
+                                                <option value='1'>Enero</option>
+                                                <option value='2'>Febrero</option>
+                                                <option value='3'>Marzo</option>
+                                                <option value='4'>Abril</option>
+                                                <option value='5'>Mayo</option>
+                                                <option value='6'>Junio</option>
+                                                <option value='7'>Julio</option>
+                                                <option value='8'>Agosto</option>
+                                                <option value='9'>Septiembre</option>
+                                                <option value='10'>Octubre</option>
+                                                <option value='11'>Noviembre</option>
+                                                <option value='12' selected>Diciembre</option>
+                                             {%endif%}
+					</select>
+					<br>
+                                        {% else %}
+                                            <input type="hidden" name ="mes" id="mes" value="{{cuota.mes}}">
+                                        {% endif %}
+                                        <input type="hidden" name ="tipoCuota" id="tipoCuota" value="{{cuota.tipo}}">
+					<br>
+				</div>
+			</fieldset>
+			<input type="submit" text="Enviar" id="enviar">	
+			<br>
+			<br>
+			<em id="apartado">Los campos marcados con * son considerados obligatorios</em>
+			<br>
+		</form>
+{% endblock %}

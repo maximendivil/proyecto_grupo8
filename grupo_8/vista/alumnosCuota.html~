@@ -1,0 +1,28 @@
+<?php
+	require("../controlador/headerBackend.php");
+?>
+
+		<div id="listado">
+			<?php
+				//Muestro las cuotas impagas
+				echo "<table>";
+				echo "<caption>Listado de alumnos</caption>";
+				echo"<th>DNI</th><th>Nombre</th><th>Apellido</th><th>Fecha de nacimiento</th><th>Operaciones</th>";
+				
+				for ($i=0; $i < count($rows); $i++) {
+					echo "<tr>";
+					echo "<td>".$rows[$i]["numeroDocumento"]."</td>";
+					echo "<td>".$rows[$i]["nombre"]."</td>";
+					echo "<td>".$rows[$i]['apellido']."</td>";
+					echo "<td>".$rows[$i]['fechaNacimiento']."</td>";								
+					echo "<td><a href='../controlador/pago_cuotas.php?id=".$rows[$i]["id"]."&pagina=1'><button>Cobrar cuotas</button></a>";
+					echo "</tr>";
+				}					
+				
+				echo "</table>";
+			?>
+		</div>
+			
+	</div>
+
+</html>
